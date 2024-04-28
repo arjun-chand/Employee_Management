@@ -4,44 +4,61 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
-    const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const navigate = useNavigate();
-    
-    const auth = localStorage.getItem('user')
-    useEffect(() => {
-        if (auth) {
-          navigate('/');
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const navigate = useNavigate();
+
+  const auth = localStorage.getItem('user')
+  useEffect(() => {
+    if (auth) {
+      navigate('/');
+    }
+  }, [auth, navigate]);
+
+
+  const collectData = async () => {
+    console.log(name, email, password);
+    if (password !== confirmPassword) {
+      setPasswordError("Password and Confirm Password do not match");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setEmailError("Please enter a valid email");
+      return;
+    }
+    try {
+      const response = await axios.post('http://localhost:5000/EMS/user/signup', {
+        name,
+        email,
+        password
+      }, {
+        headers: {
+          "Content-Type": "application/json"
         }
-      }, [auth, navigate]);
-      
-
-    const collectData = async()=>{
-      console.log(name, email, password);
-      try {
-        const response = await axios.post('http://localhost:5000/EMS/user/signup', {
-            name,
-            email,
-            password
-        },{
-          headers:{
-            "Content-Type" : "application/json"
-          }
-        });
-        console.log(response.data); // Log the response data if needed
-        localStorage.setItem("user",JSON.stringify(response));
-        navigate('/')
+      });
+      console.log(response.data); // Log the response data if needed
+      localStorage.setItem("user", JSON.stringify(response));
+      navigate('/')
     } catch (error) {
-        console.error('Error:', error);
+      console.error('Error:', error);
     }
-    }
+  }
 
-    const handleSignin=()=>{
-      navigate('/signin')
-    }
+  const handleSignin = () => {
+    navigate('/signin')
+  }
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+
   return (
-   <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0">
+    <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0">
       <div className="max-w-screen-xl bg-white border shadow sm:rounded-lg flex justify-center flex-1">
         <div className="flex-1 bg-violet-100 text-center hidden md:flex">
           <div
@@ -65,31 +82,46 @@ const Signup = () => {
               <div className="mx-auto max-w-xs flex flex-col gap-4">
                 <input
                   value={name}
-                  onChange={(e)=>setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="text"
                   placeholder="Enter your name"
                 />
                 <input
                   value={email}
-                  onChange={(e)=>setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setEmailError("");
+                  }}
                   className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="email"
                   placeholder="Enter your email"
                 />
-               
+                {emailError && (
+                  <p className="text-red-500 text-sm">{emailError}</p>
+                )}
+
                 <input
                   value={password}
-                  onChange={(e)=>setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="password"
                   placeholder="Password"
                 />
                 <input
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                    setPasswordError("");
+                  }}
                   className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="password"
                   placeholder="Confirm Password"
                 />
+                {passwordError && (
+                  <p className="text-red-500 text-sm">{passwordError}</p>
+                )}
+
                 <button
                   onClick={collectData}
                   className="mt-5 tracking-wide font-semibold bg-violet-500 text-gray-100 w-full py-4 rounded-lg hover:bg-violet-400 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
@@ -120,7 +152,7 @@ const Signup = () => {
       </div>
     </div>
   )
-  
+
 }
 
-export default Signup
+export default Signup;

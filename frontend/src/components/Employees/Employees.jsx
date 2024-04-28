@@ -97,7 +97,7 @@ export default function Employees() {
               type="text"
               name="q"
               className="w-full bg-gray-200 h-12 p-4 rounded-full focus:outline-none"
-              placeholder="Search by Name, city, hobby, Country...."
+              placeholder="Search by Name, city, hobby,Country.."
             />
             <button className='p-2 text-gray-400'>
               <SearchSharpIcon />
