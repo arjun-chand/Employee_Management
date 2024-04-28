@@ -43,8 +43,8 @@ const Navbar = () => {
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                   <div className="flex flex-shrink-0 items-center">
                     <img
-                      className="h-8 w-auto"
-                      src=""
+                      className="h-12 w-auto"
+                      src='/public/logo.svg'
                       alt="Your Company"
                     />
                   </div>
@@ -55,8 +55,8 @@ const Navbar = () => {
                           key={item.name}
                           to={item.href}
                           className={classNames(
-                            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                            'rounded-md px-3 py-2 text-sm font-medium'
+                            item.current ? ' text-white hover:bg-gray-900 hover:text-white' : 'text-white-300 hover:bg-gray-700 hover:text-white',
+                            'rounded-md px-3 py-2 text-lg font-medium my-auto'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
@@ -69,17 +69,17 @@ const Navbar = () => {
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   {/* Profile dropdown */}
                   {auth && (<Menu as="div" className="relative ml-3">
-                    <div>
-                      <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <div className='flex'>
+                      <Menu.Button className="relative flex rounded-full bg-white ">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
                         <img
-                          className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          className="h-12 w-auto rounded-full"
+                          src="/public/profile.svg"
                           alt=""
                         />
                       </Menu.Button>
-                      <p className='mx-4 text-gray-800 font-semibold	'>{JSON.parse(auth).name}</p>
+                      <p className='mx-4 text-white text-lg font-semibold	my-auto'>{JSON.parse(auth).name}</p>
                     </div>
                     <Transition
                       as={Fragment}

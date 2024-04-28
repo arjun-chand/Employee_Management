@@ -56,7 +56,10 @@ router.get('/search/:key', async (req, res) => {
         "$or": [
              {name: { $regex: req.params.key, $options: 'i'}},
              {country: { $regex: req.params.key, $options: 'i'}},
-             {state: { $regex: req.params.key, $options: 'i'}}
+             {state: { $regex: req.params.key, $options: 'i'}},
+             {city: { $regex: req.params.key, $options: 'i'}},
+             {hobbies: { $regex: req.params.key, $options: 'i'}},
+             
             ]
        })
        res.send(response);

@@ -11,10 +11,17 @@ import axios from 'axios';
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import { useNavigate } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import PhoneIcon from '@mui/icons-material/Phone';
+import PlaceIcon from '@mui/icons-material/Place';
+import FlagIcon from '@mui/icons-material/Flag';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 
 export default function Employees() {
-
   const [employees, setEmployees] = React.useState([]);
+  const [filterPopupOpen, setFilterPopupOpen] = React.useState(false);
+  const [sortBy, setSortBy] = React.useState('');
+  const [selectedCities, setSelectedCities] = React.useState([]);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -41,39 +48,144 @@ export default function Employees() {
     } else {
       getEmployees();
     }
-
-
-
   }
 
+  const handleFilterIconClick = () => {
+    setFilterPopupOpen(!filterPopupOpen);
+  }
+
+  const handleSortChange = (value) => {
+    setSortBy(value);
+    setFilterPopupOpen(false);
+  }
+
+  const handleCityCheckboxChange = (city) => {
+    if (selectedCities.includes(city)) {
+      setSelectedCities(selectedCities.filter(c => c !== city));
+    } else {
+      setSelectedCities([...selectedCities, city]);
+    }
+  }
+
+  // Sorting logic
+  const sortedEmployees = [...employees].sort((a, b) => {
+    if (sortBy === 'asc') {
+      return a.name.localeCompare(b.name);
+    } else if (sortBy === 'desc') {
+      return b.name.localeCompare(a.name);
+    }
+    return 0;
+  });
+
+  // Filtering logic
+  const filteredEmployees = sortedEmployees.filter(employee => {
+    if (selectedCities.length === 0) return true;
+    return selectedCities.includes(employee.city);
+  });
 
   return (
     <div>
-      <h1>List Of Employees</h1>
-      <div className="flex m-2">
-        <div className='flex bg-white rounded-3xl w-80 mx-2 justify-center'>
-          <input
-            onChange={handleSearch}
-            type="text"
-            name="q"
-            className="w-full  h-12 p-4 rounded-full focus:outline-none"
-            placeholder="Search"
-
-          />
-          <button className='p-2 text-gray-400'>
-            <SearchSharpIcon />
-          </button>
-        </div>
+      <h1 className="text-3xl font-semibold text-violet-500 dark:text-white my-3 py-2 text-center">Employees</h1>
+      <div>
+        <div className="flex mx-auto justify-between px-4 mt-3">
         <div>
-          <button type="button" onClick={()=>{navigate('/addEmployee')}} className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"><AddIcon />Add Employee</button>
-
+            <button type="button" onClick={() => { navigate('/addEmployee') }} className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  hover:cursor-pointer hover:scale-105 hover:duration-200 hover:transition-transform hover:ease-in-out shadow-2xl"><AddIcon />Add Employee</button>
+          </div>
+          <div className='flex bg-white rounded-3xl w-80 mx-2 justify-center bg-gray-200'>
+            <input
+              onChange={handleSearch}
+              type="text"
+              name="q"
+              className="w-full bg-gray-200 h-12 p-4 rounded-full focus:outline-none"
+              placeholder="Search by Name, city, hobby, Country...."
+            />
+            <button className='p-2 text-gray-400'>
+              <SearchSharpIcon />
+            </button>
+          </div>
+         
+          <div className="relative">
+            <FilterListIcon className="mr-2 hover:cursor-pointer"  onClick={handleFilterIconClick} />
+            {filterPopupOpen && (
+              <div className="absolute bg-white border border-gray-300 rounded p-2 mt-2 right-0 z-10 w-60 px-4">
+                <div>
+                  <button onClick={() => handleSortChange('asc')}>Sort by Name (A-Z)</button>
+                  <button onClick={() => handleSortChange('desc')}>Sort by Name (Z-A)</button>
+                </div>
+                <div>
+                  <h3 className="mt-3 mb-2">Filter by City:</h3>
+                  <div>
+                    <label>
+                    New York
+                      <input className="mx-2" type="checkbox" checked={selectedCities.includes('New York')} onChange={() => handleCityCheckboxChange('New York')} />
+                      
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      Delhi
+                      <input  className="mx-2" type="checkbox" checked={selectedCities.includes('Delhi')} onChange={() => handleCityCheckboxChange('Delhi')} />
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      Mumbai
+                      <input  className="mx-2" type="checkbox" checked={selectedCities.includes('Mumbai')} onChange={() => handleCityCheckboxChange('Mumbai')} />
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                    Bangalore
+                      <input className="mx-2" type="checkbox" checked={selectedCities.includes('Bangalore')} onChange={() => handleCityCheckboxChange('Bangalore')} />
+                      
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      Ahemdabad
+                      <input  className="mx-2" type="checkbox" checked={selectedCities.includes('Ahemdabad')} onChange={() => handleCityCheckboxChange('Ahemdabad')} />
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                    Dehradun
+                      <input className="mx-2" type="checkbox" checked={selectedCities.includes('Dehradun')} onChange={() => handleCityCheckboxChange('Dehradun')} />
+                      
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      Lucknow
+                      <input  className="mx-2" type="checkbox" checked={selectedCities.includes('Lucknow')} onChange={() => handleCityCheckboxChange('Lucknow')} />
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                    Sheinghai
+                      <input className="mx-2" type="checkbox" checked={selectedCities.includes('Sheinghai')} onChange={() => handleCityCheckboxChange('Sheinghai')} />
+                      
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      London
+                      <input  className="mx-2" type="checkbox" checked={selectedCities.includes('London')} onChange={() => handleCityCheckboxChange('London')} />
+                    </label>
+                  </div>
+                  {/* Add more cities as needed */}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="flex p-2">
-        {employees.length > 0 ? (
-          employees.map((employee, index) => (
-            <Card key={index} sx={{ maxWidth: 345 }}
-              className="m-3 hover:cursor-pointer	"
+        {filteredEmployees.length > 0 ? (
+          filteredEmployees.map((employee, index) => (
+            <Card
+              key={index}
+              sx={{ maxWidth: 345 }}
+              className="m-3 hover:cursor-pointer hover:scale-105 hover:duration-200 hover:transition-transform hover:ease-in-out shadow-2xl"
               onClick={() => {
                 navigate(`/employeeDetails/${employee._id}`);
               }}
@@ -95,11 +207,10 @@ export default function Employees() {
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
-
-                  <h2>Email: {employee.email}</h2>
-                  <h2>City: {employee.city}</h2>
-                  <h2>Country: {employee.country}</h2>
-                  <h2>Gender: {employee.gender}</h2>
+                  <h2><PhoneIcon />: {employee.email}</h2>
+                  <h2 className="mt-1"><PlaceIcon />: {employee.city}</h2>
+                  <h2 className="mt-1"><FlagIcon />: {employee.country}</h2>
+                  <h2 className="mt-1"><AcUnitIcon />: {employee.gender}</h2>
                 </Typography>
               </CardContent>
             </Card>

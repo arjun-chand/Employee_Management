@@ -8,6 +8,16 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import BadgeIcon from '@mui/icons-material/Badge';
+import EmailIcon from '@mui/icons-material/Email';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import FlagIcon from '@mui/icons-material/Flag';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import FitbitIcon from '@mui/icons-material/Fitbit';
 
 export default function EmployeeDetails() {
     const params = useParams();
@@ -91,33 +101,68 @@ export default function EmployeeDetails() {
         }));
     }
     return (
-        <div>
-            <Card className='w-90 p-0 m-4' sx={{ display: 'flex' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <div className='flex justify-center'>
+            <Card className='mt-5 shadow-2xl' sx={{ display: 'flex', boxShadow: '0px 5px 20px rgba(0, 10, 5, 0.3)', width:'40%'}}>
+                <Box className="mx-4" sx={{ display: 'flex', flexDirection: 'column' }}>
                     <CardContent sx={{ flex: '1 0 auto' }}>
-                        <Typography component="div" variant="h5">
-                            {employee.name}
-                        </Typography>
-                        <Typography variant="subtitle1" color="text.secondary" component="div">
-                            {employee.email}
-                        </Typography>
+                        <div className='flex'>
+                            <BadgeIcon className='mx-2' />
+                            <Typography className='text-4xl font-black text-violet-500 dark:text-white' component="div" variant="h5">
+                                {employee.name}
+                            </Typography>
+                        </div>
+                        <div className='flex mt-2'>
+                            <EmailIcon className='mx-2' />
+                            <Typography variant="subtitle1" color="text.secondary" component="div">
+                                {employee.email}
+                            </Typography>
+                        </div>
+
                         {/* Display other employee details similarly */}
-                        <h2>Phone:{employee.phone}</h2>
-                        <h2>City:{employee.city}</h2>
-                        <h2>State:{employee.state}</h2>
-                        <h2>Country:{employee.country}</h2>
-                        <h2>Gender:{employee.gender}</h2>
-                        <h2>Education:{employee.education}</h2>
-                        <h2>Hobbies:{employee.hobbies}</h2>
+                        <div className='flex mt-1'>
+                            <PhoneIcon className='mx-2'/>
+                            <h2>Phone:{employee.phone}</h2>
+                        </div>
+                        <div className='flex mt-1'>
+                            <LocationCityIcon className='mx-2'/>
+                            <h2>City:{employee.city}</h2>
+                        </div>
+                        <div className='flex mt-1'>
+                            <LocationOnIcon className='mx-2'/>
+                            <h2>State:{employee.state}</h2>
+                        </div>
+                        <div className='flex mt-1'>
+                            <FlagIcon className='mx-2'/>
+                            <h2>Country:{employee.country}</h2>
+                        </div>
+                        <div className='flex mt-1'>
+                            <AcUnitIcon className='mx-2'/>
+                            <h2>Gender:{employee.gender}</h2>
+                        </div>
+                        <div className='flex mt-1'>
+                            <MenuBookIcon className='mx-2'/>
+                            <h2>Education:{employee.education}</h2>
+                        </div>
+                        <div className='flex mt-1'>
+                            <FitbitIcon className='mx-2'/>
+                            <h2>Hobbies:{employee.hobbies}</h2>
+                        </div>
                     </CardContent>
-                    <Box sx={{ display: 'flex' }}>
-                        <DeleteIcon className='hover:cursor-pointer' onClick={() => handleDelete(employee._id)} />
-                        <EditIcon className='hover:cursor-pointer' onClick={handleEdit} />
+                    <Box className="my-4" sx={{ display: 'flex' }}>
+                    <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 ml-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 hover:cursor-pointer hover:scale-105 hover:duration-200 hover:transition-transform hover:ease-in-out shadow-2xl " onClick={() => handleDelete(employee._id)}>Delete
+                        <DeleteIcon className='mx-2'/>
+                        </button>
+                        <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 ml-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 hover:cursor-pointer hover:scale-105 hover:duration-200 hover:transition-transform hover:ease-in-out shadow-2xl " onClick={handleEdit}>Update
+
+                        <EditIcon className='mx-2'/>
+                        </button>
                     </Box>
                 </Box>
                 <CardMedia
+                    className='py-6'
                     component="img"
-                    sx={{ width: 151 }}
+                    sx={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }}
+
                     image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDY5FlTbWIatHXzVDLQbK8bZaQLQcFjXlCuc6ok0LnZg&s"
                     alt="Employee avatar"
                 />

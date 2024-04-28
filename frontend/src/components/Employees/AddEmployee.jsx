@@ -84,9 +84,9 @@ export default function AddEmployee() {
 
   return (
     <>
-      <div>
-        <Box sx={{ width: '100%' }}>
-          <Stepper nonLinear activeStep={activeStep}>
+      <div className='px-4'>
+        <Box className="px-4" sx={{ width: '100%' }}>
+          <Stepper className='mx-6 my-6' nonLinear activeStep={activeStep}>
             {steps.map((label, index) => (
               <Step key={label} completed={completed[index]}>
                 <StepButton color="inherit" onClick={handleStep(index)}>
@@ -98,14 +98,16 @@ export default function AddEmployee() {
           <div>
             {activeStep === 0 ? (
               <div>
-                <h1>Employee Details</h1>
+                <h1 className='text-lg leading-6 font-medium text-gray-900 text-center my-6'>Employee Details</h1>
+                <div className='flex flex-col md:flex-row mt-3 justify-center'>
                 <input
+                  
                   onChange={(e) => setName(e.target.value)}
                   value={name}
                   type="text"
                   name="name"
                   id="name"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-yellow-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-600 sm:text-sm sm:leading-6"
+                  className=" mx-2  rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-violet-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-500 sm:text-sm sm:leading-6"
                   placeholder="Name"
                 />
                 <select
@@ -113,7 +115,7 @@ export default function AddEmployee() {
                   value={gender}
                   id="gender"
                   name="gender"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-yellow-400 focus:ring-2 focus:ring-inset focus:ring-yellow-600 sm:text-sm sm:leading-6"
+                  className="mx-2 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-violet-400 focus:ring-2 focus:ring-inset focus:ring-violet-500 sm:text-sm sm:leading-6"
                   placeholder="Select Gender"
                 >
                   <option value="">Select Gender</option>
@@ -121,13 +123,15 @@ export default function AddEmployee() {
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
                 </select>
+                </div>
+                <div className='flex flex-col md:flex-row mt-3 justify-center'>
                 <select
                   onChange={(e) => setCity(e.target.value)}
                   value={city}
                   type="text"
                   name="city"
                   id="city"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-yellow-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-600 sm:text-sm sm:leading-6"
+                  className="mx-2 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-violet-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-500 sm:text-sm sm:leading-6"
                   placeholder="Select Employee City"
                 >
                   <option value="">Select City</option>
@@ -140,7 +144,6 @@ export default function AddEmployee() {
                   <option value="New York">New York</option>
                   <option value="Sheinghai">Sheinghai</option>
                   <option value="London">London</option>
-                  <option value="Cambridge">Ahemdabad</option>
                 </select>
                 <select
                   onChange={(e) => setState(e.target.value)}
@@ -148,7 +151,7 @@ export default function AddEmployee() {
                   type="text"
                   name="state"
                   id="state"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-yellow-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-600 sm:text-sm sm:leading-6"
+                  className="mx-2 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-violet-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-500 sm:text-sm sm:leading-6"
                   placeholder="State"
                 >
                   <option value="">Select State</option>
@@ -168,7 +171,7 @@ export default function AddEmployee() {
                   type="text"
                   name="country"
                   id="country"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-yellow-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-600 sm:text-sm sm:leading-6"
+                  className="mx-2 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-violet-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-500 sm:text-sm sm:leading-6"
                   placeholder="Country"
                 >
                   <option value="">Select Country</option>
@@ -181,13 +184,15 @@ export default function AddEmployee() {
                   <option value="Israel">Israel</option>
                   <option value="UAE">UAE</option>
                 </select>
+                </div>
+                <div className='flex justify-center mt-3'>
                 <input
                   onChange={(e) => setEducation(e.target.value)}
                   value={education}
                   type="text"
                   name="education"
                   id="education"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-yellow-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-600 sm:text-sm sm:leading-6"
+                  className="mx-2 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-violet-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-500 sm:text-sm sm:leading-6"
                   placeholder="Education"
                 />
                 <input
@@ -196,22 +201,23 @@ export default function AddEmployee() {
                   type="text"
                   name="hobbies"
                   id="hobbies"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-yellow-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-600 sm:text-sm sm:leading-6"
-                  placeholder="Education"
+                  className=" mx-2 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-violet-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-500 sm:text-sm sm:leading-6"
+                  placeholder="Enter the Hobbies"
                 />
+                </div>
               </div>
             ) : (
               <div>
-                <h1>Employee Contact Details</h1>
+                <h1 className='text-lg leading-6 font-medium text-gray-900 text-center my-6'>Employee Contact Details</h1>
                 {activeStep === 1 && (
-                  <>
+                  <div className='flex justify-center'>
                     <input
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
                       type="email"
                       name="email"
                       id="email"
-                      className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-yellow-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-600 sm:text-sm sm:leading-6"
+                      className="mx-2 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-violet-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-500 sm:text-sm sm:leading-6"
                       placeholder="Email"
                     />
                     <input
@@ -220,26 +226,26 @@ export default function AddEmployee() {
                       type="tel"
                       name="phone"
                       id="phone"
-                      className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-yellow-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-600 sm:text-sm sm:leading-6"
+                      className="mx-2rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-violet-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-500 sm:text-sm sm:leading-6"
                       placeholder="Phone Number"
                     />
-                  </>
+                  </div>
                 )}
               </div>
             )}
             <div>
               {activeStep === steps.length - 1 && (
-                <div>
-                  <h1>Employee Details</h1>
-                  <p>Name: {name}</p>
-                  <p>Email: {email}</p>
-                  <p>Mobile: {phone}</p>
-                  <p>City: {city}</p>
-                  <p>State: {state}</p>
-                  <p>Country: {country}</p>
-                  <p>Gender: {gender}</p>
-                  <p>Education: {education}</p>
-                  <p>Hobbies: {hobbies}</p>
+                <div className='px-6'>
+                  <h1 className='text-lg leading-6 font-medium text-gray-900 text-center my-6'>Employee Details</h1>
+                  <p className='mt-1 text-center'>Name: {name}</p>
+                  <p className='mt-1 text-center'>Email: {email}</p>
+                  <p className='mt-1 text-center'>Mobile: {phone}</p>
+                  <p className='mt-1 text-center'>City: {city}</p>
+                  <p className='mt-1 text-center'>State: {state}</p>
+                  <p className='mt-1 text-center'>Country: {country}</p>
+                  <p className='mt-1 text-center'>Gender: {gender}</p>
+                  <p className='mt-1 text-center'>Education: {education}</p>
+                  <p className='mt-1 text-center'>Hobbies: {hobbies}</p>
                   <Button onClick={handleSubmit}>Submit</Button>
                 </div>
               )}
