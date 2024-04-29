@@ -15,9 +15,7 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
-        <Navbar/>
         <Routes>
-
           <Route element={<PrivateRoutes/>}>
             <Route path ="/" element={<Employees/>}/>
             <Route path ="/employeeDetails/:id" element={<EmployeeDetails/>}/>
