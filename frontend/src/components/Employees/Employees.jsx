@@ -105,72 +105,79 @@ export default function Employees() {
             <div className="relative">
               <FilterListIcon className="mr-2 hover:cursor-pointer" onClick={handleFilterIconClick} />
               {filterPopupOpen && (
-                <div className="absolute bg-white border border-gray-300 rounded p-2 mt-2 right-0 z-10 w-60 px-4">
-                  <div>
-                    <button onClick={() => handleSortChange('asc')}>Sort by Name (A-Z)</button>
-                    <button onClick={() => handleSortChange('desc')}>Sort by Name (Z-A)</button>
+                <div className="popup absolute bg-white border border-gray-300 rounded p-2 mt-2 right-0 z-10 w-60 px-4" sx={{borderRadius:'25px'}}>
+                  <div className="border-b-2 pb-2">
+                    <button className="sort px-1 my-1" onClick={() => handleSortChange('asc')}>Sort by Name (A-Z)</button>
+                    <button className="sort px-1 my-1" onClick={() => handleSortChange('desc')}>Sort by Name (Z-A)</button>
                   </div>
                   <div>
                     <h3 className="mt-3 mb-2">Filter by City:</h3>
                     <div>
                       <label>
+                       
+                        <input className="mx-2 my-2" type="checkbox" checked={selectedCities.includes('New York')} onChange={() => handleCityCheckboxChange('New York')} />
                         New York
-                        <input className="mx-2" type="checkbox" checked={selectedCities.includes('New York')} onChange={() => handleCityCheckboxChange('New York')} />
-
                       </label>
                     </div>
                     <div>
                       <label>
+                        
+                        <input className="mx-2 my-2" type="checkbox" checked={selectedCities.includes('Delhi')} onChange={() => handleCityCheckboxChange('Delhi')} />
                         Delhi
-                        <input className="mx-2" type="checkbox" checked={selectedCities.includes('Delhi')} onChange={() => handleCityCheckboxChange('Delhi')} />
                       </label>
                     </div>
                     <div>
                       <label>
+                       
+                        <input className="mx-2 my-2" type="checkbox" checked={selectedCities.includes('Mumbai')} onChange={() => handleCityCheckboxChange('Mumbai')} />
                         Mumbai
-                        <input className="mx-2" type="checkbox" checked={selectedCities.includes('Mumbai')} onChange={() => handleCityCheckboxChange('Mumbai')} />
                       </label>
                     </div>
                     <div>
                       <label>
+                        
+                        <input className="mx-2 my-2" type="checkbox" checked={selectedCities.includes('Bangalore')} onChange={() => handleCityCheckboxChange('Bangalore')} />
                         Bangalore
-                        <input className="mx-2" type="checkbox" checked={selectedCities.includes('Bangalore')} onChange={() => handleCityCheckboxChange('Bangalore')} />
 
                       </label>
                     </div>
                     <div>
                       <label>
+                       
+                        <input className="mx-2 my-2" type="checkbox" checked={selectedCities.includes('Ahemdabad')} onChange={() => handleCityCheckboxChange('Ahemdabad')} />
                         Ahemdabad
-                        <input className="mx-2" type="checkbox" checked={selectedCities.includes('Ahemdabad')} onChange={() => handleCityCheckboxChange('Ahemdabad')} />
                       </label>
                     </div>
                     <div>
                       <label>
+                        
+                        <input className="mx-2 my-2" type="checkbox" checked={selectedCities.includes('Dehradun')} onChange={() => handleCityCheckboxChange('Dehradun')} />
                         Dehradun
-                        <input className="mx-2" type="checkbox" checked={selectedCities.includes('Dehradun')} onChange={() => handleCityCheckboxChange('Dehradun')} />
-
                       </label>
                     </div>
                     <div>
                       <label>
+                        
+                        <input className="mx-2 my-2" type="checkbox" checked={selectedCities.includes('Lucknow')} onChange={() => handleCityCheckboxChange('Lucknow')} />
                         Lucknow
-                        <input className="mx-2" type="checkbox" checked={selectedCities.includes('Lucknow')} onChange={() => handleCityCheckboxChange('Lucknow')} />
                       </label>
                     </div>
                     <div>
                       <label>
+                        
+                        <input className="mx-2 my-2" type="checkbox" checked={selectedCities.includes('Sheinghai')} onChange={() => handleCityCheckboxChange('Sheinghai')} />
                         Sheinghai
-                        <input className="mx-2" type="checkbox" checked={selectedCities.includes('Sheinghai')} onChange={() => handleCityCheckboxChange('Sheinghai')} />
 
                       </label>
                     </div>
                     <div>
                       <label>
+                        
+                        <input className="mx-2 my-2" type="checkbox" checked={selectedCities.includes('London')} onChange={() => handleCityCheckboxChange('London')} />
                         London
-                        <input className="mx-2" type="checkbox" checked={selectedCities.includes('London')} onChange={() => handleCityCheckboxChange('London')} />
                       </label>
                     </div>
-                    {/* Add more cities as needed */}
+                    {/*I can add more cities as needed */}
                   </div>
                 </div>
               )}
