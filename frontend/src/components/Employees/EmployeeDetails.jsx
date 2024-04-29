@@ -102,7 +102,7 @@ export default function EmployeeDetails() {
     }
     return (
         <div className='flex justify-center'>
-            <Card className='mt-5 shadow-2xl' sx={{ display: 'flex', boxShadow: '0px 5px 20px rgba(0, 10, 5, 0.3)', width:'40%', borderRadius:'25px', marginTop:'4rem'}}>
+            <Card className='employeeDetailCard mt-5 shadow-2xl' sx={{ display: 'flex', boxShadow: '0px 5px 20px rgba(0, 10, 5, 0.3)', width:'40%', borderRadius:'25px', marginTop:'4rem'}}>
                 <Box className="mx-4" sx={{ display: 'flex', flexDirection: 'column' }}>
                     <CardContent sx={{ flex: '1 0 auto' }}>
                         <div className='flex'>
@@ -159,7 +159,7 @@ export default function EmployeeDetails() {
                     </Box>
                 </Box>
                 <CardMedia
-                    className='py-6'
+                    className='py-6 flex justify-center'
                     component="img"
                     sx={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }}
 
