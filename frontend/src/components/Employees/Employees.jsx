@@ -1,5 +1,4 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -103,8 +102,6 @@ export default function Employees() {
               </button>
             </div>
 
-
-
             <div className="relative">
               <FilterListIcon className="mr-2 hover:cursor-pointer" onClick={handleFilterIconClick} />
               {filterPopupOpen && (
@@ -191,13 +188,15 @@ export default function Employees() {
           filteredEmployees.map((employee, index) => (
             <Card
               key={index}
-              sx={{ maxWidth: 345 }}
-              className="m-3 hover:cursor-pointer hover:scale-105 hover:duration-200 hover:transition-transform hover:ease-in-out shadow-2xl"
+              sx={{ maxWidth: 345, borderRadius:'25px', boxShadow: '0px 5px 20px rgba(0, 10, 5, 0.2)'}}
+              className="card m-3 hover:cursor-pointer hover:scale-105 hover:duration-200 hover:transition-transform hover:ease-in-out shadow-2x"
+              
               onClick={() => {
                 navigate(`/employeeDetails/${employee._id}`);
               }}
             >
               <CardHeader
+                className="bg-violet-200"
                 avatar={
                   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
                     {employee.name.charAt(0).toUpperCase()}

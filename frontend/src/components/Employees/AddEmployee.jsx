@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
-import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import TurnedInIcon from '@mui/icons-material/TurnedIn';

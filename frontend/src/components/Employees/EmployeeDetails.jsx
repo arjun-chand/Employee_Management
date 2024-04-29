@@ -102,7 +102,7 @@ export default function EmployeeDetails() {
     }
     return (
         <div className='flex justify-center'>
-            <Card className='mt-5 shadow-2xl' sx={{ display: 'flex', boxShadow: '0px 5px 20px rgba(0, 10, 5, 0.3)', width:'40%'}}>
+            <Card className='mt-5 shadow-2xl' sx={{ display: 'flex', boxShadow: '0px 5px 20px rgba(0, 10, 5, 0.3)', width:'40%', borderRadius:'25px', marginTop:'4rem'}}>
                 <Box className="mx-4" sx={{ display: 'flex', flexDirection: 'column' }}>
                     <CardContent sx={{ flex: '1 0 auto' }}>
                         <div className='flex'>
@@ -120,32 +120,32 @@ export default function EmployeeDetails() {
 
                         {/* Display other employee details similarly */}
                         <div className='flex mt-1'>
-                            <PhoneIcon className='mx-2'/>
-                            <h2>Phone:{employee.phone}</h2>
+                            <PhoneIcon className='mx-2 flex gap-3'/>
+                            <h2 className='mr-2'>Phone :</h2> <p>{employee.phone}</p>
                         </div>
                         <div className='flex mt-1'>
                             <LocationCityIcon className='mx-2'/>
-                            <h2>City:{employee.city}</h2>
+                            <h2 className='mr-2'>City :</h2>{employee.city}
                         </div>
                         <div className='flex mt-1'>
                             <LocationOnIcon className='mx-2'/>
-                            <h2>State:{employee.state}</h2>
+                            <h2 className='mr-2'>State :</h2>{employee.state}
                         </div>
                         <div className='flex mt-1'>
                             <FlagIcon className='mx-2'/>
-                            <h2>Country:{employee.country}</h2>
+                            <h2 className='mr-2'>Country :</h2>{employee.country}
                         </div>
                         <div className='flex mt-1'>
                             <AcUnitIcon className='mx-2'/>
-                            <h2>Gender:{employee.gender}</h2>
+                            <h2 className='mr-2'>Gender :</h2>{employee.gender}
                         </div>
                         <div className='flex mt-1'>
                             <MenuBookIcon className='mx-2'/>
-                            <h2>Education:{employee.education}</h2>
+                            <h2 className='mr-2'>Education :</h2>{employee.education}
                         </div>
                         <div className='flex mt-1'>
                             <FitbitIcon className='mx-2'/>
-                            <h2>Hobbies:{employee.hobbies}</h2>
+                            <h2 className='mr-2'>Hobbies :</h2>{employee.hobbies}
                         </div>
                     </CardContent>
                     <Box className="my-4" sx={{ display: 'flex' }}>
