@@ -196,9 +196,9 @@ export default function Employees() {
               }}
             >
               <CardHeader
-                className="bg-violet-200"
+                className="bg-gradient-to-r from-violet-200 to-violet-400"
                 avatar={
-                  <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  <Avatar sx={{ bgcolor: 'black' }} aria-label="recipe">
                     {employee.name.charAt(0).toUpperCase()}
                   </Avatar>
                 }
